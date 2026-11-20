@@ -1,10 +1,14 @@
 # LUXLOCK for Apple Silicon Mac
 
-[Download LUXLOCK 0.8](https://raw.githubusercontent.com/10tenni/luxware-mac/main/luxlock/releases/LUXLOCK-0.8.zip)
+[Download LUXLOCK 0.9](https://raw.githubusercontent.com/10tenni/luxware-mac/main/luxlock/releases/LUXLOCK-0.9.zip)
 
 Requires macOS 13 or later and Screen Recording / Accessibility permission.
 Quit any older copy, unzip the download, move LUXLOCK.app to a writable Applications folder, and reopen.
 The app is Developer ID signed, not Apple-notarized. Secure timestamping was unavailable in the build environment.
+
+## Version 0.9
+
+Capture preserves small names at up to 2048 pixels wide. Offline testing reproduced and corrected a missed tag at the previous capture size.
 
 ## Version 0.8: dashboard and tag detection
 
