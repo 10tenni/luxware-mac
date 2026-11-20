@@ -1,12 +1,21 @@
 # LUXLOCK for Apple Silicon Mac
 
-[Download LUXLOCK 0.7](https://raw.githubusercontent.com/10tenni/luxware-mac/main/luxlock/releases/LUXLOCK-0.7.zip)
+[Download LUXLOCK 0.8](https://raw.githubusercontent.com/10tenni/luxware-mac/main/luxlock/releases/LUXLOCK-0.8.zip)
 
 Requires macOS 13 or later and Screen Recording / Accessibility permission.
 Quit any older copy, unzip the download, move LUXLOCK.app to a writable Applications folder, and reopen.
 The app is Developer ID signed, not Apple-notarized. Secure timestamping was unavailable in the build environment.
 
-## Version 0.7: permission retention
+## Version 0.8: dashboard and tag detection
+
+- New dark-blue dashboard with a session sidebar, large status cards, tuning controls, Balanced/Fast presets, and an unsaved-changes indicator.
+- Detects red lettering, white names inside red plates, and white names immediately above red bars.
+- Acquisition accepts the crosshair directly on a nametag as well as on the body underneath.
+- Plain red bars without text and green tags remain excluded.
+
+Synthetic tests passed for the new layouts, motion, and stopping when the name disappears. Live Roblox gameplay was not tested. Native visual inspection was unavailable in the managed runtime, so the UI has been compiled but not visually verified.
+
+## Retained permission improvements
 
 - The app and update helper use a persistent Developer ID signing identity. Earlier ad hoc signatures were tied to each exact build.
 - Permission checks request only missing access. If both permissions are granted, the Permissions button leaves them alone.
@@ -25,7 +34,7 @@ The changed-build test confirmed that a later build keeps, and satisfies, the sa
 - Nametag sampling uses fewer vertical samples and more horizontal detail. Synthetic tracking-only median was 0.506 ms per frame versus 0.628 ms previously, approximately 19% less CPU tracking time. This is not a measured improvement in Roblox latency.
 - Red text-shaped nametag gating, short bounded motion prediction, and immediate correction stops on tag loss are retained.
 
-Aim below a visible **red-lettered nametag** and hold your configured activation key. Release to stop or select another target. White lettering on a red bar is not supported. Small, covered, blurred, or unusually styled names may be rejected. Similar text and UI can still cause false matches. The tracker estimates a body point beneath the name; it does not read player identities or game memory.
+Aim at a visible **red-lettered nametag**, a **white name paired with a red bar**, or the body underneath, and hold your configured activation key. Release to stop or select another target. White lettering inside a red plate or immediately above a red bar is supported. Small, covered, blurred, or unusually styled names may be rejected. Similar text and UI can still cause false matches. The tracker estimates a body point beneath the name; it does not read player identities or game memory.
 
 If input overshoots, reduce Strength. Relative input is experimental; use the bounded cursor mode if Roblox ignores it.
 
