@@ -1,12 +1,23 @@
 # LUXLOCK for Apple Silicon Mac
 
-[Download LUXLOCK 0.6](https://raw.githubusercontent.com/10tenni/luxware-mac/main/luxlock/releases/LUXLOCK-0.6.zip)
+[Download LUXLOCK 0.7](https://raw.githubusercontent.com/10tenni/luxware-mac/main/luxlock/releases/LUXLOCK-0.7.zip)
 
 Requires macOS 13 or later and Screen Recording / Accessibility permission.
 Quit any older copy, unzip the download, move LUXLOCK.app to a writable Applications folder, and reopen.
-The app is development-signed, not Apple-notarized.
+The app is Developer ID signed, not Apple-notarized. Secure timestamping was unavailable in the build environment.
 
-## Version 0.6
+## Version 0.7: permission retention
+
+- The app and update helper use a persistent Developer ID signing identity. Earlier ad hoc signatures were tied to each exact build.
+- Permission checks request only missing access. If both permissions are granted, the Permissions button leaves them alone.
+- The release build script refuses an ad hoc fallback.
+- The rejected icon is not included.
+
+**One more approval may be needed when upgrading from 0.6 or earlier.** After approving this new identity, future builds signed with the same identity should retain permissions. macOS controls consent and can still request it again after system changes or revocation. No automatic permission grants or system privacy database edits are used.
+
+The changed-build test confirmed that a later build keeps, and satisfies, the same designated code identity requirement. Actual TCC approvals were not modified during testing.
+
+## Retained response improvements
 
 - Stronger default response: strength 0.68, correction cap 80, deadzone 0.5.
 - Fast response preset: strength 0.78, correction cap 100, deadzone 0.35.
